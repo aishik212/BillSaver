@@ -106,6 +106,8 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("texts", "onCreate: " + amt + " " + type);
                 costmap.put(type, new DataModel(amt, bankNameEt.getText().toString(), referenceEt.getText().toString()));
                 amountEt.setText("0");
+                bankNameEt.setText("");
+                referenceEt.setText("");
                 alertDialog.dismiss();
                 updateData();
             } else {
@@ -124,19 +126,27 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateSpinnerData() {
-        String itemAtPosition = spinner.getSelectedItem().toString();
-        if (itemAtPosition != null && !itemAtPosition.isEmpty()) {
-            if (itemAtPosition.toLowerCase().trim().equals("cash")) {
-                bankNameEt.setVisibility(View.GONE);
-                referenceEt.setVisibility(View.GONE);
-                bankNameEt.setText("");
-                referenceEt.setText("");
-            } else {
-                bankNameEt.setVisibility(View.VISIBLE);
-                referenceEt.setVisibility(View.VISIBLE);
+        Object selectedItem = spinner.getSelectedItem();
+        if (selectedItem != null) {
+            String itemAtPosition = selectedItem.toString();
+            if (itemAtPosition != null && !itemAtPosition.isEmpty()) {
+                if (itemAtPosition.toLowerCase().trim().equals("cash")) {
+                    bankNameEt.setVisibility(View.GONE);
+                    referenceEt.setVisibility(View.GONE);
+                    bankNameEt.setText("");
+                    referenceEt.setText("");
+                } else {
+                    bankNameEt.setVisibility(View.VISIBLE);
+                    referenceEt.setVisibility(View.VISIBLE);
+                }
             }
+            Log.d("texts", "onItemSelected: " + itemAtPosition);
+        } else {
+            bankNameEt.setVisibility(View.GONE);
+            referenceEt.setVisibility(View.GONE);
+            bankNameEt.setText("");
+            referenceEt.setText("");
         }
-        Log.d("texts", "onItemSelected: " + itemAtPosition);
     }
 
     private void updateData() {
