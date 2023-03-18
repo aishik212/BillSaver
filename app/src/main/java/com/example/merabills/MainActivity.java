@@ -126,26 +126,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateSpinnerData() {
-        Object selectedItem = spinner.getSelectedItem();
-        if (selectedItem != null) {
-            String itemAtPosition = selectedItem.toString();
-            if (itemAtPosition != null && !itemAtPosition.isEmpty()) {
-                if (itemAtPosition.toLowerCase().trim().equals("cash")) {
-                    bankNameEt.setVisibility(View.GONE);
-                    referenceEt.setVisibility(View.GONE);
-                    bankNameEt.setText("");
-                    referenceEt.setText("");
-                } else {
-                    bankNameEt.setVisibility(View.VISIBLE);
-                    referenceEt.setVisibility(View.VISIBLE);
+        try {
+            Object selectedItem = spinner.getSelectedItem();
+            if (selectedItem != null) {
+                String itemAtPosition = selectedItem.toString();
+                if (itemAtPosition != null && !itemAtPosition.isEmpty()) {
+                    if (itemAtPosition.toLowerCase().trim().equals("cash")) {
+                        bankNameEt.setVisibility(View.GONE);
+                        referenceEt.setVisibility(View.GONE);
+                        bankNameEt.setText("");
+                        referenceEt.setText("");
+                    } else {
+                        bankNameEt.setVisibility(View.VISIBLE);
+                        referenceEt.setVisibility(View.VISIBLE);
+                    }
                 }
+                Log.d("texts", "onItemSelected: " + itemAtPosition);
+            } else {
+                bankNameEt.setVisibility(View.GONE);
+                referenceEt.setVisibility(View.GONE);
+                bankNameEt.setText("");
+                referenceEt.setText("");
             }
-            Log.d("texts", "onItemSelected: " + itemAtPosition);
-        } else {
+        } catch (Exception e) {
             bankNameEt.setVisibility(View.GONE);
             referenceEt.setVisibility(View.GONE);
             bankNameEt.setText("");
             referenceEt.setText("");
+
         }
     }
 
