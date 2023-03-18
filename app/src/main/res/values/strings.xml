@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MeraBills</string>
+    <string-array name="paymentType">
+        <item>Cash</item>
+        <item>Bank Transfer</item>
+        <item>Credit Card</item>
+    </string-array>
+
+</resources>
